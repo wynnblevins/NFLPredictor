@@ -25,14 +25,14 @@ class Team:
             lastName = responseObj["player"]["LastName"]
             teamUni = responseObj["team"]["ID"] 
             gamesPlayed = responseObj["stats"]["GamesPlayed"]
-            kickOffReturns = responseObj["stats"]["KrYds"]
+            #kickOffReturns = responseObj["stats"]["KrYds"]
 
             # Get fumbles     
             fumbles = 0
             if "FumTD" in responseObj["stats"]: 
                 fumbles = responseObj["stats"]["FumTD"]
             
-            player = Player(firstName, lastName, gamesPlayed, fumbles, kickOffReturns, teamUni)
+            player = Player(firstName, lastName, gamesPlayed, fumbles, teamUni)
             self.add_to_team(player)
             
     def add_to_team(self, player):
