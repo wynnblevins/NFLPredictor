@@ -11,7 +11,7 @@ class Team:
         self.__players = []
 
         url = "https://api.mysportsfeeds.com/v1.2/pull/nfl/" + season + "/cumulative_player_stats.json?playerstats=Att,Comp,Yds,TD&team=" + str(self.get_id())
-        usrPass = "wynnblevins:Nowuckinfurries3612"
+        usrPass = ""
         b64Val = base64.b64encode(usrPass)
         response = requests.get(url, headers={"Authorization": "Basic %s" % b64Val})
 
