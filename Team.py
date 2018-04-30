@@ -3,6 +3,7 @@ import base64
 import requests
 from requests.auth import HTTPDigestAuth
 import json
+from restconfig import REST_CONFIG
 
 class Team: 
     def __init__(self, id, name, season):
@@ -10,14 +11,12 @@ class Team:
         self.__name = name
         self.__players = []
 
-        url = "https://api.mysportsfeeds.com/v1.2/pull/nfl/" + season + "/cumulative_player_stats.json?playerstats=Att,Comp,Yds,TD&team=" + str(self.get_id())
-        usrPass = ""
+        url = REST_CONFIG['base_url'] + season + "/cumulative_player_stats.json?playerstats=Att,Comp,Yds,TD&team=" + str(self.get_id())
+        usrPass =  REST_CONFIG['username'] + ':' + REST_CONFIG['password']
         b64Val = base64.b64encode(usrPass)
         response = requests.get(url, headers={"Authorization": "Basic %s" % b64Val})
-
         content = json.loads(response.content)
         cumulativeplayerstats = content["cumulativeplayerstats"]
-        
         playerStats = cumulativeplayerstats["playerstatsentry"]
 
         for responseObj in playerStats:
@@ -25,14 +24,15 @@ class Team:
             lastName = responseObj["player"]["LastName"]
             teamUni = responseObj["team"]["ID"] 
             gamesPlayed = responseObj["stats"]["GamesPlayed"]
-            #kickOffReturns = responseObj["stats"]["KrYds"]
+            kickOffReturns = responseObj["stats"].get("KrYds")
 
             # Get fumbles     
             fumbles = 0
             if "FumTD" in responseObj["stats"]: 
                 fumbles = responseObj["stats"]["FumTD"]
             
-            player = Player(firstName, lastName, gamesPlayed, fumbles, teamUni)
+            player = Player(firstName, lastName, gamesPlayed, 
+                fumbles, kickOffReturns, teamUni)
             self.add_to_team(player)
             
     def add_to_team(self, player):

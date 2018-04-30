@@ -1,11 +1,12 @@
 class Player: 
-    def __init__(self, firstName, lastName, gamesPlayed, fumbles, teamId):
+    def __init__(self, firstName, lastName, gamesPlayed, fumbles, kickOffReturnYds, teamId):
         self.__lastName = lastName
         self.__firstName = firstName
         self.__gamesPlayed = gamesPlayed
         self.__fumbles = fumbles
         self.__teamId = teamId
-        
+        self.__kickOffReturnYds = kickOffReturnYds
+
     def get_lastName(self):
         return self.__lastName
 
@@ -35,3 +36,9 @@ class Player:
 
     def set_fumbles(self, fumbles):
         self.__fumbles = fumbles
+
+    def get_kickOffReturnYds(self):
+        return self.__kickOffReturnYds
+
+    def set_kickOffReturnYds(self, kickOffReturnYds):
+        self.__kickOffReturnYds = kickOffReturnYds 
