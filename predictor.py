@@ -67,25 +67,23 @@ def runPredictor(teamAId, teamAName, teamBId, teamBName):
     totalNumberOfFumblesTeamA2014 = getTotalFumbles(teamA2014)
     totalNumberOfFumblesTeamB2014 = getTotalFumbles(teamB2014)
 
-    totalNumberOfReturnYdsTeamA2017 = getTotalKickoffReturnYds(teamA2017)
-    totalNumberOfReturnYdsTeamB2017 = getTotalKickoffReturnYds(teamB2017)
-    totalNumberOfReturnYdsTeamA2016PO = getTotalKickoffReturnYds(teamA2016PO)
-    totalNumberOfReturnYdsTeamB2016PO = getTotalKickoffReturnYds(teamB2016PO)
-    totalNumberOfReturnYdsTeamA2016 = getTotalKickoffReturnYds(teamA2016)
-    totalNumberOfReturnYdsTeamB2016 = getTotalKickoffReturnYds(teamB2016)
-    totalNumberOfReturnYdsTeamA2015 = getTotalKickoffReturnYds(teamA2015)
-    totalNumberOfReturnYdsTeamB2015 = getTotalKickoffReturnYds(teamB2015)
-    totalNumberOfReturnYdsTeamA2014 = getTotalKickoffReturnYds(teamA2014)
-    totalNumberOfReturnYdsTeamB2014 = getTotalKickoffReturnYds(teamB2014)
+    # totalNumberOfReturnYdsTeamA2017 = getTotalKickoffReturnYds(teamA2017)
+    # totalNumberOfReturnYdsTeamB2017 = getTotalKickoffReturnYds(teamB2017)
+    # totalNumberOfReturnYdsTeamA2016PO = getTotalKickoffReturnYds(teamA2016PO)
+    # totalNumberOfReturnYdsTeamB2016PO = getTotalKickoffReturnYds(teamB2016PO)
+    # totalNumberOfReturnYdsTeamA2016 = getTotalKickoffReturnYds(teamA2016)
+    # totalNumberOfReturnYdsTeamB2016 = getTotalKickoffReturnYds(teamB2016)
+    # totalNumberOfReturnYdsTeamA2015 = getTotalKickoffReturnYds(teamA2015)
+    # totalNumberOfReturnYdsTeamB2015 = getTotalKickoffReturnYds(teamB2015)
+    # totalNumberOfReturnYdsTeamA2014 = getTotalKickoffReturnYds(teamA2014)
+    # totalNumberOfReturnYdsTeamB2014 = getTotalKickoffReturnYds(teamB2014)
 
     features = [
         [
             totalNumOfGamesTeamA2014, 
             totalNumberOfFumblesTeamA2014, 
-            totalNumberOfReturnYdsTeamA2014, 
             totalNumOfGamesTeamB2014, 
-            totalNumberOfFumblesTeamB2014, 
-            totalNumberOfReturnYdsTeamB2014
+            totalNumberOfFumblesTeamB2014
         ], 
         # [
         #     totalNumOfGamesTeamA2015, 
@@ -97,34 +95,28 @@ def runPredictor(teamAId, teamAName, teamBId, teamBName):
         # ],
         [
             totalNumOfGamesTeamA2016, 
-            totalNumberOfFumblesTeamA2016, 
-            totalNumberOfReturnYdsTeamA2016, 
+            totalNumberOfFumblesTeamA2016,  
             totalNumOfGamesTeamB2016, 
-            totalNumberOfFumblesTeamB2016, 
-            totalNumberOfReturnYdsTeamB2016
+            totalNumberOfFumblesTeamB2016
         ],
         [
             totalNumOfGamesTeamA2017, 
-            totalNumberOfFumblesTeamA2017, 
-            totalNumberOfReturnYdsTeamA2017, 
+            totalNumberOfFumblesTeamA2017,  
             totalNumOfGamesTeamB2017, 
-            totalNumberOfFumblesTeamB2017, 
-            totalNumberOfReturnYdsTeamB2017
+            totalNumberOfFumblesTeamB2017
         ] 
     ]
 
-    labels = [1, 0, 1, 0]
+    labels = [1, 0, 1]
     clf = tree.DecisionTreeClassifier()
     clf.fit(features, labels)
 
     result = clf.predict([
         [
             totalNumOfGamesTeamA2015, 
-            totalNumberOfFumblesTeamA2015, 
-            totalNumberOfReturnYdsTeamA2015, 
+            totalNumberOfFumblesTeamA2015,  
             totalNumOfGamesTeamB2015, 
-            totalNumberOfFumblesTeamB2015, 
-            totalNumberOfReturnYdsTeamB2015
+            totalNumberOfFumblesTeamB2015
         ]
     ])
 
