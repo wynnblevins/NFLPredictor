@@ -11,7 +11,7 @@ def predictWinner():
     teamBId = request.args.get('teamBId', '')
     teamBName = request.args.get('teamBName', '')
     result = runPredictor(teamAId, teamAName, teamBId, teamBName)
-    print result
+    return result
 
 if __name__ == '__main__':
     app.run(debug=True)
