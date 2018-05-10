@@ -14,6 +14,7 @@ class Team:
         url = REST_CONFIG['base_url'] + season + "/cumulative_player_stats.json?playerstats=Att,Comp,Yds,TD&team=" + str(self.get_id())
         usrPass =  REST_CONFIG['username'] + ':' + REST_CONFIG['password']
         b64Val = base64.b64encode(usrPass)
+        
         response = requests.get(url, headers={"Authorization": "Basic %s" % b64Val})
         content = json.loads(response.content)
         cumulativeplayerstats = content["cumulativeplayerstats"]
