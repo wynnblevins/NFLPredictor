@@ -15,10 +15,16 @@ Next, activate the virtual environment with the following command.
 source venv/bin/activate
 ```   
 
+After running the above command, if successful you will see "(venv)" before your terminal promp.  Next, within the root of the project (same directory as the requirements.txt file) install the required project dependencies by running the following:
+```
+pip install -r requirements.txt
+```
+
 Finally, in the project's root (the same directory as app.py) run the following:
 ```
 python app.py
 ```
+
 The app should now be listening for requests at localhost:5000
 
 ## Deactivating the Virtual Environment
